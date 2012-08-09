@@ -44,16 +44,14 @@
           <table id="card_container" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>name</th>
-                <th>URL</th>
-                <th>expirationDate</th>
+                <th>Files</th>
               </tr>
             </thead>
             <tbody id="card-list">
               <tr>
-                <td><input id="new-name" type="text" placeholder="Add a new item - name?"/></td>
-                <td><input id="new-URL" type="text" placeholder="URL"/></td>
-                <td><input id="new-expire" type="text" placeholder="When should it expire?"/></td>
+                <td><input id="new-name" type="text" placeholder="File Name"/>
+                  <input id="new-URL" type="filepicker-dragdrop"/>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -64,9 +62,13 @@
 
     <!-- Templates -->
     <script type="text/template" id="card-template">
-      <td><%= name %></td>
-      <td><%= URL %></td>
-      <td><%= expirationDate %></td>
+      <td><a href="<%= URL %>"><%= name %></a></td>
+    </script>
+     <!-- Adds the Filepicker.io javascript library to the page -->
+    <script src="https://api.filepicker.io/v0/filepicker.js"></script>
+    <script type="text/javascript">
+        //Seting up Filepicker.io with your api key
+        filepicker.setKey('AlyhSmtPrSUef1kHEYcbJz');
     </script>
 
     <!-- Le javascript
