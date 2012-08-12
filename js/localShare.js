@@ -77,13 +77,36 @@ Cards.fetch({
     // a one-to-one correspondence between a Todo and a TodoView in this
     // app, we set a direct reference on the model for convenience.
     initialize: function() {
+      var self = this;
+      _.bindAll(this, 'createOnEnter'),
       this.render();
+      this.$("#new-URL").val('chicken masala');
     },
 
     // Re-render the contents of the todo item.
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
       return this;
+    },
+
+    // If you hit return in the main input field, create new Todo model
+    createOnEnter: function(e) {
+      alert('in createOnEnter');
+      var self = this;
+      if (e.keyCode != 13) return;
+      if (this.input.val() == '') return;
+
+      Cards.create({
+        name: this.input.val(),
+        URL:   this.$("#new-URL").val('');
+      });
+
+      this.input.val('');
+      this.$("#new-URL").val('');
+    },
+
+    events: {
+      "keypress #new-name":  "createOnEnter"
     },
   });
 });
